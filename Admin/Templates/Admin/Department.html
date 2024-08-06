@@ -1,0 +1,52 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <br><br><br><br><br><br><br><br>
+        <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="4" align="center" style="border-collapse: collapse;" cellpadding="10">
+            <tr>
+                <td>Department</td>
+            <td><input type="text" name="department" autocomplete="off" required=""></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="btn" value="Save" ><input type="reset" name="btn" value="cancel">
+            </tr>
+            </table>
+            <br>
+            <br>
+            <br>
+            <table border="4" align="center" cellpadding="10">
+                <tr>
+                    <th>SI.No</th>
+                    <th>Department</th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+    {% for i in res %}
+                <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{i.department_name}}</td>
+    <td><a href="{% url 'webadmin:deldepartment' i.id %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+    </table>
+    </form>
+    </div>
+    </center>
+</body>
+</html>
+<br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}

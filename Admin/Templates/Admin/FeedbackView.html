@@ -1,0 +1,74 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <br><br><br><br><br><br><br><br>
+        <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <center><h1>View User Feedback</h1></center>
+        <table border="5" align="center" style="border-collapse: collapse;" callpadding="10">
+        <tr>
+            <td>SI.NO</td>
+            <td>Date</td>
+            <td>Content</td>
+        </tr>
+        {% for i in feed %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.date}}</td>
+            <td>{{i.content}}</td>
+                  
+        </tr>
+        {% endfor %}
+        </table>
+        <br>
+        <center><h1>View Doctor Feedback</h1></center>
+        <table border="4" align="center" style="border-collapse: collapse;" callpadding="10">
+            <tr>
+                <td>SI.NO</td>
+                <td>Date</td>
+                <td>Content</td>
+            </tr>
+            {% for i in feed1 %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.date}}</td>
+                <td>{{i.content}}</td>
+                      
+            </tr>
+            {% endfor %}
+            </table>
+            <br>
+            <center><h1>View Hospital Feedback</h1></center>
+            <table border="4" align="center" style="border-collapse: collapse;" callpadding="10">
+                <tr>
+                    <td>SI.NO</td>
+                    <td>Date</td>
+                    <td>Content</td>
+                </tr>
+                {% for i in feed2 %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.content}}</td>
+                          
+                </tr>
+                {% endfor %}
+                </table>
+    </form>
+    </div>
+    
+    </center>        
+</body>
+</html>
+<br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'Consultancy/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br><br>
+    <div id="tab">
+        <br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="4" align="center" style="border-collapse: collapse;" callpadding="10">
+        <tr>
+            <td>SI.NO</td>
+            <td>Name</td>
+            <td>Contact</td>
+            <td>Email</td>
+            <td>Photo</td>
+            <td>Action</td>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.contact}}</td>
+            <td>{{i.email}}</td>
+            <td><img src="{{i.photo.url}}" width="150" height="150"></td>
+            <td><a href="{% url 'consultancy:setavailability' i.id%}">Set Availability</a></td>        
+        </tr>
+        {% endfor %}
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+<br><br><br><br><br><br>
+{% endblock content %}

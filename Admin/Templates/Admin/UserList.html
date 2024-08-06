@@ -1,0 +1,44 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserList</title>
+</head>
+<body>
+    <center>
+    <br><br><br><br><br><br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post">
+    {% csrf_token %} 
+    <table border="4" align="center" cellpadding="10">
+        <tr>
+            <td>Sl.No</td>
+            <td>Name</td>
+            <td>Contact</td>
+            <td>Email</td>
+            <td>Address</td>
+            <td>Photo</td>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.contact}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.address}}</td>
+            <td><img src="{{i.photo.url}}" width="150" height="150"></td>
+        </tr>
+        {%  endfor %}
+    </table>
+    </form>
+</div>
+</center>
+</body>
+</html>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}

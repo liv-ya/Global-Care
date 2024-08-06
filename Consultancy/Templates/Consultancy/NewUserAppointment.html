@@ -1,0 +1,44 @@
+{% extends 'Consultancy/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br>  <br><br><br>
+    <div id="tab">
+        <br><br><br>
+    <form action="" method="post">
+        <table border="4" align="center" cellpadding="10">
+            <tr>
+                <td>SI.No</td>
+                <td>Slot No</td>
+                <td>Date</td>
+                <td>Name of User</td>
+                <td>Contact Info</td>
+                <td>Doctor Name</td>
+                <td>Action</td>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.slot.slotno}}</td>
+                <td>{{i.appointment_date}}</td>
+                <td>{{i.user.name}}</td>  
+                <td>{{i.user.contact}}</td> 
+                <td>{{i.slot.davaillable.doctor.name}}</td>  
+                <td><a href="{% url 'consultancy:acceptappointment' i.id %}">Accept</a> | <a href="{% url 'consultancy:rejectappointment' i.id %}">Reject</a></td>
+            </tr>   
+            {% endfor %}
+        </table>
+    </form>
+</div>
+</body>
+</html>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}

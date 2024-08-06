@@ -1,0 +1,85 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <br><br><br><br><br><br><br><br><br>
+        <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <center><h1>View User Complaints</h1></center>
+        <table border="4" align="center" style="border-collapse: collapse;" callpadding="10">
+        <tr>
+            <td>SI.NO</td>
+            <td>Complaint Type</td>
+            <td>Title</td>
+            <td>Content</td>
+            <td>Action</td>
+        </tr>
+        {% for i in com %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.typeid.complaint_type}}</td>
+            <td>{{i.title}}</td>
+            <td>{{i.content}}</td>
+            <td><a href="{% url 'webadmin:Reply' i.id %}">Reply</a></td> 
+        </tr>
+        {% endfor %}
+        </table>
+        <br>
+        <center><h1>View Doctor Complaints</h1></center>
+        <table border="4" align="center" style="border-collapse: collapse;" callpadding="10">
+            <tr>
+                <td>SI.NO</td>
+                <td>Complaint Type</td>
+                <td>Title</td>
+                <td>Content</td>
+                <td>Action</td>
+            </tr>
+            {% for i in comp %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.typeid.complaint_type}}</td>
+                <td>{{i.title}}</td>
+                <td>{{i.content}}</td>
+                <td><a href="{% url 'webadmin:Reply' i.id %}">Reply</a></td>
+                      
+            </tr>
+            {% endfor %}
+            </table>
+            <br>
+            <center><h1>View Hospital Complaints</h1></center>
+            <table border="4" align="center" style="border-collapse: collapse;" callpadding="10">
+                <tr>
+                    <td>SI.NO</td>
+                    <td>Complaint Type</td>
+                    <td>Title</td>
+                    <td>Content</td>
+                    <td>Action</td>
+                </tr>
+                {% for i in compl %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.typeid.complaint_type}}</td>
+                    <td>{{i.title}}</td>
+                    <td>{{i.content}}</td>
+                    <td><a href="{% url 'webadmin:Reply' i.id %}">Reply</a></td>
+                          
+                </tr>
+                {% endfor %}
+                </table>
+    </form>
+    </div>
+    </center>
+</body>
+</html>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}
