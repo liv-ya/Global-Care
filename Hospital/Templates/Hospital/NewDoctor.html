@@ -1,0 +1,141 @@
+{% extends 'Hospital/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <br><br><br><br><br><br>
+        <div id="tab">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="4" align="center" style="border-collapse: collapse;" cellpadding="10">
+            <tr>
+                <td>Name</td>
+            <td><input type="text" name="txtname" autocomplete="off" required="" title="Name allows only alphabets,spaces and first letter must be capital letter" pattern="^[A-Z ]+[a-zA-Z ]*$" onchange="nameval(this)">
+                <span id="name"></span></td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td><input type="text" name="txtnumber" autocomplete="off" required="" pattern="[6-9]{1}[0-9]{9}" title="Phone number with 6-9 and remaining 9 digit with 0-9" onchange="checknum(this)">
+                <span id="contact"></span></td>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="txtemail" autocomplete="off" required="" onchange="emailval(this)">
+                <span id="content"></span></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name="txtaddress" id=""></textarea></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" name="txtgender" value="male"> Male <input type="radio" name="txtgender" value="female"> Female</td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td><select name="txtdepartment" id="txtdepartment">
+                    <option value="">---select---</option>
+                    {% for i in dept %}
+                    <option value="{{i.id}}">{{i}}</option>
+                    {% endfor %}
+                </select>
+</td>
+            </tr>
+            <tr>
+                <td>Photo</td>
+                <td>
+                    <input type="file" name="txtphoto">
+                </td>
+            </tr>
+            <tr>
+                <td>Proof</td>
+                <td>
+                    <input type="file" name="txtproof">
+                </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="txtpass" autocomplete="off" required=""></td>
+            </tr>
+            <tr>
+                <td>Confirm Password</td>
+                <td><input type="password" name="txtcpass" autocomplete="off" required="" onchange="chkpwd(this,txtpass)">
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save"><input type="reset" value="Cancel"></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</body>
+</html>
+<br><br><br><br><br><br>
+<script>
+       
+    function chkpwd(txtrp, txtp)
+{
+if((txtrp.value)!=(txtp.value))
+{
+document.getElementById("pass").innerHTML = "<span style='color: red;'>Passwords Mismatch</span>";
+}
+}
+
+function checknum(elem)
+{
+var numericExpression = /^[0-9]{8,10}$/;
+if(elem.value.match(numericExpression))
+{
+document.getElementById("contact").innerHTML = "";
+return true;
+}
+else
+{
+document.getElementById("contact").innerHTML = "<span style='color: red;'>Numbers Only Allowed</span>";
+elem.focus();
+return false;
+}
+}
+
+
+
+function emailval(elem)
+{
+var emailexp=/^([a-zA-Z0-9.\_\-])+\@([a-zA-Z0-9.\_\-])+\.([a-zA-Z]{2,4})$/;
+if(elem.value.match(emailexp))
+{
+document.getElementById("content").innerHTML = "";
+return true;
+}
+else
+{
+
+document.getElementById("content").innerHTML ="<span style='color: red;'>Check Email Address Entered</span>";;
+elem.focus();
+return false;
+}
+}
+function nameval(elem)
+{
+var emailexp=/^([A-Za-z ]*)$/;
+if(elem.value.match(emailexp))
+{
+document.getElementById("name").innerHTML = "";
+return true;
+}
+else
+{
+
+document.getElementById("name").innerHTML = "<span style='color: red;'>Alphabets Are Allowed</span>";
+elem.focus();
+return false;
+}
+}
+
+
+</script>
+{% endblock content %}
