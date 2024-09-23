@@ -1,0 +1,35 @@
+{% extends 'Doctor/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="4" align="center" style="border-collapse: collapse;" cellpadding="10">
+    <tr>
+        <td>Medicine Details</td>
+        <td><input type="txt" name="txtmedi" autocomplete="off" required=""></td>
+    </tr>
+    <tr>
+        <td>Diet Details</td>
+        <td><input type="txt" name="txtdeit" autocomplete="off" required=""></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><input type="submit" value="Save"><input type="reset" value="Cancel"></td>
+    </tr>
+    </table>
+    </form>
+</div>
+</body>
+</html>
+<br><br><br><br>
+{% endblock content %}

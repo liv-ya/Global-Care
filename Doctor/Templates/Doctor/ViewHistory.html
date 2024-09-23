@@ -1,0 +1,52 @@
+{% extends 'Doctor/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post">
+        <center><h1>Medical Details Report</h1></center>
+        <table border="4" align="center" cellpadding="10">
+            <tr>
+                <th>SI.No</th>
+                <th>Report File</th>
+                <th>Details</th>
+            </tr>
+            {% for i in med %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href="{{i.report_file}}" download >Download</a></td>
+            <td>{{i.report_details}}</td>
+        </tr>   
+        {% endfor %}
+        </table>
+        <br>
+        <center><h1>View Prescription Reports</h1></center>
+        <table border="1" align="center" cellpadding="10">
+            <tr>
+                <th>SI.No</th>
+                <th>Medicine Details</th>
+                <th>Diet Details</th>
+            </tr>
+            {% for i in pr %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.medicine_details}}</td>
+            <td>{{i.diet}}</td>
+        </tr>   
+        {% endfor %}
+        </table>
+    </form>
+</div>
+</body>
+</html>
+<br><br><br><br>
+{% endblock content %}

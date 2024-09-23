@@ -1,0 +1,40 @@
+{% extends 'Doctor/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br>
+    <br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="4" align="center" style="border-collapse: collapse;" cellpadding="10">
+            <tr>
+                <td>Report File</td>
+                <td><input type="file" name="txtfile"  required=""></td>
+            </tr>
+            <tr>
+                <td>Medical Report</td>
+                <td><input type="text" name="txtreport"  required=""></td>
+            </tr>
+            <tr>
+                <td>Major</td>
+                <td><input type="radio" name="txtmajor" value="Yes"> Yes <input type="radio" name="txtmajor" value="No">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save"><input type="reset" value="Cancel"></td>
+            </tr>
+            </table>
+    </form>
+</div>
+</body>
+</html>
+<br><br><br><br><br>
+{% endblock content %}
