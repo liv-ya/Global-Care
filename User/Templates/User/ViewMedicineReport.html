@@ -1,0 +1,52 @@
+{% extends 'User/Head.html'%}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="pri">
+    <br><br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" cellpadding="10" style="border-collapse: collapse" border="1">
+            <tr>
+                <th>SI.No</th>
+                <th>Report Details</th>
+                <th>Major</th>
+            </tr>
+            {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.report_details}}</td>
+            <td>{{i.major}}</td>
+        </tr>   
+        {% endfor %}
+        </table>
+            </form>
+            <br><br>
+    </div>
+    </div>
+    <center><input type="button" onclick="printDiv('pri')" id="invoice-print"  class="btn btn-success" value="Print Invoice" /></center>
+</body>
+</html>
+<script>
+    function printDiv(divName) {
+         var printContents = document.getElementById(divName).innerHTML;
+         var originalContents = document.body.innerHTML;
+    
+         document.body.innerHTML = printContents;
+    
+         window.print();
+    
+         document.body.innerHTML = originalContents;
+    }
+    </script>
+<br><br><br><br><br><br>
+{% endblock content %}

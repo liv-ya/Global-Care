@@ -1,0 +1,27 @@
+<table align="center" cellpadding="50" style="border-collapse: collapse" >
+    <tr>
+        {% for i in data %}
+
+        <td>
+            <div style="text-align:center;border:1px solid black;margin:22px;padding:20px">
+
+                <p><img src="{{i.logo.url}}" width="100px" height="100px" /></p>
+                <br>
+                <p>{{i.name}}</p>
+                <br>
+                <p>{{i.contact}}</p>
+                <br>
+                <p>{{i.email}}</p>
+                <br>
+                <p><a href="{% url 'user:viewd' i.id %}">View Doctor</a></p>
+                <br>
+            </div>
+        </td>
+        {% if forloop.counter|divisibleby:4 %}
+    </tr>
+    <tr>
+        {% endif %}
+
+
+        {% endfor %}
+</table>

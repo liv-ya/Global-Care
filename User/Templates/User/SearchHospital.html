@@ -1,0 +1,115 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br><br>
+    <div id="tab">
+    <form action="" method="post"  id="UserForm"  data-place-url="{% url 'guest:Ajax-Place'%}" data-hospital-url="{% url 'user:Ajax-hos'%}">
+    {% csrf_token %}
+    <table  border="1" align="center">
+        <tr>
+            <td>District</td>
+            <td>
+                <select name="txtdistrict" id="txtdistrict">
+                    <option value="">---select---</option>
+                    {% for i in di %}
+                    <option value="{{i.id}}">{{i}}</option>
+                    {% endfor %}
+                </select>
+
+            </td>
+        
+            <td>Place</td>
+            <td>
+                <select name="txtplace" id="txtplace">
+                    <option value="">---select---</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+        
+        <table align="center" cellpadding="50" style="border-collapse: collapse" id="result">
+            <tr>
+                {% for i in ho %}
+
+                <td>
+                    <div style="text-align:center;border:1px solid black;margin:22px;padding:20px">
+
+                        <p><img src="{{i.logo.url}}" width="100px" height="100px" /></p>
+                        <br>
+                        <p>{{i.name}}</p>
+                        <br>
+                        <p>{{i.contact}}</p>
+                        <br>
+                        <p>{{i.email}}</p>
+                        <br>
+                        <p><a href="{% url 'user:viewd' i.id %}">View Doctor</a></p>
+                        <br>
+                    </div>
+                </td>
+                {% if forloop.counter|divisibleby:4 %}
+            </tr>
+            <tr>
+                {% endif %}
+
+
+                {% endfor %}
+        </table>
+    </form>
+    </div>
+    <br><br><br><br><br>
+
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#txtdistrict").change(function () {
+        var cid = $(this).val();
+        var pid=document.getElementById("txtplace").value;
+        //alert(cid);
+        var ur = $("#UserForm").attr("data-place-url");
+        $.ajax({
+            url: ur,
+            data: { district: cid, },
+            success: function (data) {
+               // alert(data);
+                $("#txtplace").html(data);
+                var ur = $("#UserForm").attr("data-hospital-url");
+        $.ajax({
+            url: ur,
+            data: { district: cid,place:pid },
+            success: function (data) {
+               // alert(data);
+                $("#result").html(data);
+            },
+        });
+            },
+        });
+    });
+
+    $("#txtplace").change(function () {
+        var pid = $(this).val();
+        var cid=document.getElementById("txtdistrict").value;
+        //alert(cid);
+        var ur = $("#UserForm").attr("data-hospital-url");
+        $.ajax({
+            url: ur,
+            data: { place: pid,district:cid },
+            success: function (data) {
+               // alert(data);
+                $("#result").html(data);
+            },
+        });
+    });
+</script>
+{% endblock content %}
